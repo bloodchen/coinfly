@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CoinFly Demo</title>
+	 <script src="dist/coinfly.min.js"></script>
+	
+</head>
+<body>
+	<script type="text/javascript">
+		
+		async function test(){
+			const lib = await coinfly.create('ar')
+			const res = await lib.getBalance(["16ZBEb7pp6mx5EAGrdeKivztd5eRJFuvYP","1KGHhLTQaPr4LErrvbAuGE62yPpDoRwrob"])
+			console.log(res)
+			const privKey = await lib.createPrivateKey("pem");
+			console.log(privKey)
+			const publicKey = await lib.getPublicKey(privKey);
+			console.log(publicKey)
+			const strData = "hello world"
+			const sig = await lib.sign(privKey,strData)
+			console.log(sig)
+			const veried = await lib.verify(publicKey,strData,sig)
+			console.log(veried)
+		}
+		test()
+	</script>
+	
+</body>
+</html>
